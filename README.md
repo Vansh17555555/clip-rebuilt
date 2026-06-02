@@ -224,21 +224,22 @@ graph LR
 ### 🖥️ Google Colab Quickstart (Recommended)
 Running CLIP on Google Colab provides free high-performance GPU access and bypasses local physical RAM and Windows paging-file size limitations.
 
-1. **Upload the Codebase**:
-   *   Download the pre-generated `clip_from_scratch.zip` file from your workspace root.
-   *   Open a new [Google Colab](https://colab.research.google.com/) notebook.
-   *   Upload the `clip_from_scratch.zip` file directly into the Colab file browser.
-
-2. **Unzip the Project**:
-   In a Colab code cell, run:
+1. **Clone the Repository**:
+   Open a new [Google Colab](https://colab.research.google.com/) notebook. Clone the repository into a folder named `clip_from_scratch` (this folder name is required so that Python's absolute module imports resolve correctly):
    ```bash
-   !unzip clip_from_scratch.zip
+   !git clone https://github.com/Vansh17555555/clip-rebuilt.git clip_from_scratch
+   ```
+
+2. **Navigate into the Project Root**:
+   In a new code cell, change directories to step into the cloned project:
+   ```bash
+   %cd clip_from_scratch
    ```
 
 3. **Download & Prepare Flickr8k Dataset**:
    To acquire Flickr8k automatically using the Kaggle API in your Colab session:
-   *   Upload your `kaggle.json` API token (from Kaggle Account settings) into Colab's file directory.
-   *   Run the following block in a code cell to download and extract the dataset:
+   * Upload your `kaggle.json` API token (from Kaggle Account settings) into Colab's file directory.
+   * Run the following block in a code cell to download and extract the dataset:
    ```bash
    !pip install -q kaggle
    !mkdir -p ~/.kaggle
@@ -251,28 +252,28 @@ Running CLIP on Google Colab provides free high-performance GPU access and bypas
    !unzip -q flickr8k.zip -d data/flickr8k
    ```
 
-4. **Verify Paths in `config.yaml`**:
+4. **Verify Paths in `configs/config.yaml`**:
    Double-click `configs/config.yaml` in the Colab file browser and ensure the paths point to the Colab content directory:
    ```yaml
    dataset:
-     image_dir: "/content/data/flickr8k/Images"
-     caption_file: "/content/data/flickr8k/captions.txt"
+     image_dir: "/content/clip_from_scratch/data/flickr8k/Images"
+     caption_file: "/content/clip_from_scratch/data/flickr8k/captions.txt"
      # Make sure training checkpoint dir is also set
-     checkpoint_dir: "/content/checkpoints"
+     checkpoint_dir: "/content/clip_from_scratch/checkpoints"
    ```
 
 5. **Run Sanity Check & Pretraining**:
    To verify imports, forward passes, and launch the GPU training loop, execute:
    ```bash
    # Run sanity check
-   !python -m clip_from_scratch.run_sanity_checks
+   !python -m run_sanity_checks
    
    # Start pretraining
    !python -m training.train
    ```
 
 6. **Interactive Retrieval Demos**:
-   Once training checkpoints are saved in `/content/checkpoints/`, run retrieval searches:
+   Once training checkpoints are saved in `/content/clip_from_scratch/checkpoints/`, run retrieval searches:
    ```bash
    !python -m retrieval.image_retrieval
    ```
