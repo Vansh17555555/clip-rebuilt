@@ -1,0 +1,32 @@
+# Python caches and byte-code
+__pycache__/
+*.py[cod]
+*$py.class
+
+# PyTorch checkpoints and large model weights
+*.pt
+*.pth
+checkpoints/
+sanity_check_temp/
+
+# Zip files
+*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# IDE files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
